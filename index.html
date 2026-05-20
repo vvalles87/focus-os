@@ -12,7 +12,7 @@
 html[data-theme="light"]{--bg:#F6F5F1;--surf:#FFF;--surf2:#EEECEA;--surf3:#E5E4DF;--bdr:#E2E1DB;--bdr2:#C9C7BF;--tx:#1A1917;--tx2:#6A6860;--tx3:#A19E97;--acc:#1849C6;--acc-s:#EAF0FF;--ok:#166534;--ok-s:#DCFCE7;--warn:#92400E;--warn-s:#FEF3C7;--err:#991B1B;--err-s:#FEE2E2;--sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);--sh-md:0 4px 14px rgba(0,0,0,.08);--sh-lg:0 8px 30px rgba(0,0,0,.12)}
 html[data-theme="dark"]{--bg:#0F0F0E;--surf:#1A1A18;--surf2:#222220;--surf3:#2A2A28;--bdr:#2C2C2A;--bdr2:#424240;--tx:#EDECEA;--tx2:#9C9990;--tx3:#5C5A56;--acc:#5A84F0;--acc-s:#182040;--ok:#22C55E;--ok-s:#0D2818;--warn:#F59E0B;--warn-s:#2A1C06;--err:#F87171;--err-s:#2A0D0D;--sh:0 1px 3px rgba(0,0,0,.3);--sh-md:0 4px 14px rgba(0,0,0,.4);--sh-lg:0 8px 30px rgba(0,0,0,.6)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
+html{font-size:15px}
 body{font-family:var(--ui);background:var(--bg);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .15s,color .15s}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit;color:var(--tx);background:none;border:none;outline:none}
@@ -192,25 +192,6 @@ html[data-theme="dark"] .t-p{background:#1E0B33;color:#C4B5FD;border-color:#581C
 .clc:hover:not(.empty){background:var(--surf2);color:var(--tx)}
 .clc.today{font-weight:600;color:var(--acc)}.clc.sel{background:var(--acc);color:#fff!important}.clc.empty{pointer-events:none}
 
-
-/* ── TAG AUTOCOMPLETE ── */
-.tag-ac-wrap{position:relative}
-.tag-ac-list{
-  position:absolute;top:100%;left:0;z-index:300;
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r);box-shadow:var(--sh-md);
-  min-width:160px;max-height:180px;overflow-y:auto;
-  display:none;
-}
-.tag-ac-list.open{display:block}
-.tag-ac-item{
-  padding:7px 12px;font-size:12px;cursor:pointer;
-  color:var(--tx2);transition:background var(--ease);
-  display:flex;align-items:center;gap:6px;
-}
-.tag-ac-item:hover,.tag-ac-item.active{background:var(--surf2);color:var(--tx)}
-.tag-ac-none{padding:8px 12px;font-size:12px;color:var(--tx3);font-style:italic}
-
 /* ── HABITS ── */
 .htbl{width:100%;border-collapse:collapse}
 .htbl th{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3);padding:5px 3px;text-align:center;border-bottom:1px solid var(--bdr);white-space:nowrap}
@@ -232,10 +213,10 @@ html[data-theme="dark"] .t-p{background:#1E0B33;color:#C4B5FD;border-color:#581C
 .rev-wrap{overflow-x:auto}
 .rtbl{width:100%;border-collapse:collapse;min-width:500px}
 .rtbl th{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3);padding:8px 10px;text-align:left;border-bottom:1px solid var(--bdr);white-space:nowrap}
-.rtbl td{padding:8px 10px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle;word-break:break-word}
+.rtbl td{padding:8px 10px;border-bottom:1px solid var(--bdr);font-size:13px;vertical-align:middle}
 .rtbl tr:last-child td{border-bottom:none}
 .rtbl tr:hover td{background:var(--surf2)}
-.rinp{width:100%;color:var(--tx);font-size:13px;min-width:80px;word-break:break-word;white-space:normal}
+.rinp{width:100%;color:var(--tx);font-size:13px;min-width:80px}
 .stars{display:flex;gap:1px}
 .star{font-size:14px;cursor:pointer;color:var(--bdr2);transition:color var(--ease)}.star.on{color:var(--warn)}
 
@@ -466,13 +447,7 @@ html[data-theme="dark"] .hm-cell[data-l="1"]{background:#14532D}html[data-theme=
         </div>
         <div class="card">
           <div class="clbl">Nota del día</div>
-          <input id="dayNoteTitle" type="text" style="width:100%;font-size:14px;color:var(--tx);padding-bottom:8px;border-bottom:1px solid var(--bdr);margin-bottom:10px" placeholder="Título (opcional)...">
           <textarea id="dayNote" class="mta" style="min-height:80px;font-size:13px" placeholder="Reflexión, ideas..."></textarea>
-          <div style="display:flex;justify-content:flex-end;margin-top:10px">
-            <button class="btn btn-g btn-sm" onclick="saveDayNoteAsNote()" title="Guardar esta nota en la sección de Notas">
-              📌 Guardar en Notas
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -486,8 +461,8 @@ html[data-theme="dark"] .hm-cell[data-l="1"]{background:#14532D}html[data-theme=
       <button class="ibtn" onclick="shiftWeek(1)">→</button>
       <button class="btn btn-g btn-sm" onclick="shiftWeek(0,true)">Esta semana</button>
     </div>
-    <div>
-      <div class="card mb">
+    <div class="g2">
+      <div class="card">
         <div class="clbl">Meta de la semana</div>
         <input id="wkGoal" type="text" style="width:100%;font-family:var(--serif);font-size:18px;color:var(--tx);margin-bottom:14px" placeholder="Objetivo principal...">
         <div class="rev-wrap">
@@ -505,8 +480,8 @@ html[data-theme="dark"] .hm-cell[data-l="1"]{background:#14532D}html[data-theme=
         </div>
         <button class="add-row" onclick="addRevRow()" style="margin-top:8px">+ Agregar tema</button>
       </div>
-      <div class="g2" style="margin-top:14px">
-        <div class="card">
+      <div>
+        <div class="card mb">
           <div class="clbl">Mini habit tracker</div>
           <div style="overflow-x:auto">
             <table class="htbl" id="habTable"></table>
@@ -678,25 +653,6 @@ window._sha256 = sha256;
 // Each user's data lives under: users/{userId}/data/{docId}
 // Special doc "profile" holds { passwordHash }
 
-// Profile (passwordHash, theme) read directly from users/{userId}
-// App data stored in users/{userId}/data/{docId}
-
-async function fsGetProfile(userId) {
-  try {
-    const ref = doc(db, 'users', userId);
-    const snap = await getDoc(ref);
-    return snap.exists() ? snap.data() : null;
-  } catch(e) { console.error('fsGetProfile', e); return null; }
-}
-
-async function fsSetProfile(userId, data) {
-  try {
-    const ref = doc(db, 'users', userId);
-    await setDoc(ref, data, { merge: true });
-    return true;
-  } catch(e) { console.error('fsSetProfile', e); return false; }
-}
-
 async function fsGet(userId, docId) {
   try {
     const ref = doc(db, 'users', userId, 'data', docId);
@@ -723,6 +679,10 @@ async function fsGetAll(userId) {
   } catch(e) { console.error('fsGetAll', e); return {}; }
 }
 
+window._fsGet    = fsGet;
+window._fsSet    = fsSet;
+window._fsGetAll = fsGetAll;
+
 // ── LOGIN ─────────────────────────────────────
 window.doLogin = async function() {
   const user = document.getElementById('loginUser').value.trim().toLowerCase();
@@ -737,8 +697,7 @@ window.doLogin = async function() {
 
   try {
     // Get profile doc
-    // Read passwordHash directly from the user document (not subcollection)
-    const profile = await fsGetProfile(user);
+    const profile = await fsGet(user, '__profile__');
     if (!profile) { showLoginErr('Usuario no encontrado.'); btn.disabled=false; btn.textContent='Entrar'; return; }
 
     const hash = await sha256(pass);
@@ -756,6 +715,7 @@ window.doLogin = async function() {
     // Build D from Firestore docs
     window.D = { days:{}, weeks:{}, notes:[], quicknote:'', theme: profile.theme||'light' };
     Object.entries(allDocs).forEach(([k, v]) => {
+      if (k === '__profile__') return;
       if (k.startsWith('day|'))  window.D.days[k.replace('day|','')] = v;
       if (k.startsWith('week|')) window.D.weeks[k.replace('week|','')] = v;
       if (k === '__notes__')     window.D.notes = v.list || [];
@@ -827,7 +787,7 @@ window.mark = function(docKey, data) {
 
 window.markTheme = async function(theme) {
   const user = window._currentUser; if (!user) return;
-  await fsSetProfile(user, { theme });
+  await fsSet(user, '__profile__', { theme });
 };
 
 function setSyncStatus(state, label) {
@@ -940,93 +900,11 @@ function toggleTagPanel(){
   document.getElementById('tagPanel').classList.toggle('open',tagPanelOpen);
   document.getElementById('tpArr').textContent=tagPanelOpen?'▼':'▶';
 }
-// Collect all unique tags the user has ever used
-function getUserTags() {
-  if(!D) return [];
-  const tags = new Set();
-  // From tasks (all days)
-  Object.values(D.days).forEach(dd => {
-    ['high','mid','low'].forEach(p => {
-      (dd.tasks[p]||[]).forEach(t => (t.tags||[]).forEach(tg => tags.add(tg)));
-    });
-  });
-  // From notes
-  (D.notes||[]).forEach(n => (n.tags||[]).forEach(tg => tags.add(tg)));
-  return [...tags].sort();
-}
-
 function buildDailyTags(){
   const pal=document.getElementById('dailyTags');pal.innerHTML='';
-  const userTags = getUserTags();
-  if(!userTags.length){
-    pal.innerHTML='<div style="font-size:12px;color:var(--tx3);padding:6px 0">Tus tags aparecerán aquí conforme los uses.</div>';
-    return;
-  }
-  userTags.forEach(tg=>{
-    const chip=document.createElement('span');chip.className='tchip';chip.textContent='#'+tg;
-    chip.onclick=()=>applyTagToFocused(tg);pal.appendChild(chip);
-  });
-}
-
-// Autocomplete for inline tag inputs
-function initTagAutocomplete(inp, getTagFn, onSelectFn) {
-  let acList = null;
-  let acActive = -1;
-
-  function getOrCreateList() {
-    if(acList) return acList;
-    const wrap = document.createElement('div');
-    wrap.className = 'tag-ac-wrap';
-    inp.parentNode.insertBefore(wrap, inp);
-    wrap.appendChild(inp);
-    acList = document.createElement('div');
-    acList.className = 'tag-ac-list';
-    wrap.appendChild(acList);
-    return acList;
-  }
-
-  function showAc(matches) {
-    const list = getOrCreateList();
-    if(!matches.length){ list.classList.remove('open'); return; }
-    list.innerHTML = matches.map((t,i) =>
-      `<div class="tag-ac-item" data-tag="${t}">#${t}</div>`
-    ).join('');
-    list.querySelectorAll('.tag-ac-item').forEach(item => {
-      item.onclick = () => {
-        onSelectFn(item.dataset.tag);
-        inp.value = '';
-        list.classList.remove('open');
-        acActive = -1;
-      };
-    });
-    list.classList.add('open');
-    acActive = -1;
-  }
-
-  inp.addEventListener('input', () => {
-    const v = inp.value.replace(/^#/,'').toLowerCase();
-    if(!v){ getOrCreateList().classList.remove('open'); return; }
-    const matches = getTagFn().filter(t => t.includes(v) && t !== v);
-    showAc(matches);
-  });
-
-  inp.addEventListener('keydown', e => {
-    const list = getOrCreateList();
-    const items = list.querySelectorAll('.tag-ac-item');
-    if(e.key === 'ArrowDown'){ e.preventDefault(); acActive=Math.min(acActive+1,items.length-1); items.forEach((el,i)=>el.classList.toggle('active',i===acActive)); return; }
-    if(e.key === 'ArrowUp'){ e.preventDefault(); acActive=Math.max(acActive-1,0); items.forEach((el,i)=>el.classList.toggle('active',i===acActive)); return; }
-    if(e.key === 'Tab' && list.classList.contains('open') && acActive >= 0){
-      e.preventDefault();
-      const tag = items[acActive]?.dataset.tag;
-      if(tag){ onSelectFn(tag); inp.value=''; list.classList.remove('open'); acActive=-1; }
-      return;
-    }
-    if(e.key==='Escape'){ list.classList.remove('open'); }
-  });
-
-  // Close on outside click
-  document.addEventListener('click', e => {
-    if(acList && !acList.contains(e.target) && e.target !== inp) acList.classList.remove('open');
+  PTAGS.forEach(t=>{
+    const c=document.createElement('span');c.className='tchip';c.textContent='#'+t.n;
+    c.onclick=()=>applyTagToFocused(t.n);pal.appendChild(c);
   });
 }
 let focPri=null,focIdx=null;
@@ -1056,18 +934,14 @@ function renderNTagWrap(){
   noteTags.forEach((t,i)=>{wrap.appendChild(tagSpan(t,true,()=>{noteTags.splice(i,1);buildNoteTagPal();renderNTagWrap();}));});
   wrap.appendChild(inp);
 }
-const noteTagAddFn = (v) => {
-  if(v&&!noteTags.includes(v)){noteTags.push(v);buildNoteTagPal();renderNTagWrap();}
-};
 document.getElementById('nTagInp').addEventListener('keydown',e=>{
   if(e.key==='Enter'||e.key===','){
     e.preventDefault();
     const v=e.target.value.replace(/^#/,'').trim().toLowerCase();
-    noteTagAddFn(v);
+    if(v&&!noteTags.includes(v)){noteTags.push(v);buildNoteTagPal();renderNTagWrap();}
     e.target.value='';
   }
 });
-initTagAutocomplete(document.getElementById('nTagInp'), getUserTags, noteTagAddFn);
 
 // ── CALENDAR ─────────────────────────────────────────────────
 // Fixed-position calendar that always appears correctly
@@ -1143,33 +1017,6 @@ function calSel(y,m,d){
 }
 
 // ── DAILY PLANNER ───────────────────────────────────────────
-// Save planner day note to Notes section
-function saveDayNoteAsNote() {
-  const title = document.getElementById('dayNoteTitle').value.trim();
-  const content = document.getElementById('dayNote').value.trim();
-  if(!content) { showToast('Escribe algo en la nota primero.'); return; }
-  const d = new Date(); d.setDate(d.getDate() + dayOff);
-  const dateStr = d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  const finalTitle = title || 'Nota del planner — ' + dateStr;
-  // Check if a note with same title from today exists
-  const existing = D.notes.find(n => n.title === finalTitle);
-  if(existing) {
-    if(!confirm('Ya existe una nota con este título. ¿Quieres reemplazarla?')) return;
-    existing.content = content;
-    existing.updated = Date.now();
-  } else {
-    D.notes.push({
-      id: Date.now().toString(),
-      title: finalTitle,
-      content,
-      tags: ['planner'],
-      updated: Date.now()
-    });
-  }
-  saveNotes();
-  showToast('✓ Nota guardada en la sección de Notas.');
-}
-
 function renderDaily(){
   if(!D) return;
   const d=new Date();d.setDate(d.getDate()+dayOff);
@@ -1183,9 +1030,6 @@ function renderDaily(){
   const dn=document.getElementById('dayNote');
   dn.value=data.note||'';
   dn.oninput=()=>{getDay(dayOff).note=dn.value;saveDay(dayOff);};
-  const dnt=document.getElementById('dayNoteTitle');
-  dnt.value=data.noteTitle||'';
-  dnt.oninput=()=>{getDay(dayOff).noteTitle=dnt.value;saveDay(dayOff);};
   renderPastPending();
 }
 
@@ -1223,21 +1067,17 @@ function renderTodoList(pri,tasks){
     });
     const tagInp=document.createElement('input');
     tagInp.className='tinp';tagInp.placeholder='#tag →Enter';tagInp.style.cssText='font-size:11px;max-width:90px';
-    const addTagFn = (v) => {
-      if(v){
-        const dd=getDay(dayOff);if(!dd.tasks[pri][i].tags)dd.tasks[pri][i].tags=[];
-        if(!dd.tasks[pri][i].tags.includes(v)){dd.tasks[pri][i].tags.push(v);saveDay(dayOff);renderTodoList(pri,dd.tasks[pri]);}
-      }
-    };
     tagInp.addEventListener('keydown',e=>{
       if(e.key==='Enter'||e.key===','){
         e.preventDefault();
         const v=e.target.value.replace(/^#/,'').trim().toLowerCase();
-        addTagFn(v);
+        if(v){
+          const dd=getDay(dayOff);if(!dd.tasks[pri][i].tags)dd.tasks[pri][i].tags=[];
+          if(!dd.tasks[pri][i].tags.includes(v)){dd.tasks[pri][i].tags.push(v);saveDay(dayOff);renderTodoList(pri,dd.tasks[pri]);}
+        }
         e.target.value='';
       }
     });
-    initTagAutocomplete(tagInp, getUserTags, addTagFn);
     tagsRow.appendChild(tagInp);
     body.appendChild(txt);body.appendChild(tagsRow);
     const timeInp=document.createElement('input');
