@@ -380,7 +380,7 @@ html[data-theme="dark"] .hm-cell[data-l="1"]{background:#14532D}html[data-theme=
     </div>
     <div class="login-title">Bienvenido</div>
     <div class="login-sub">Ingresa con tu usuario y contraseña para continuar.</div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:20px;letter-spacing:.04em">v2026.05.21c</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:20px;letter-spacing:.04em">v2026.05.21d</div>
     <div class="login-err" id="loginErr"></div>
     <div class="login-field">
       <label class="login-lbl">Usuario</label>
@@ -833,8 +833,8 @@ window.doLogin = async function() {
     Object.entries(allDocs).forEach(([k, v]) => {
       if (k.startsWith('day|'))  window.D.days[k.replace('day|','')] = v;
       if (k.startsWith('week|')) window.D.weeks[k.replace('week|','')] = v;
-      if (k === '__notes__')     window.D.notes = v.list || [];
-      if (k === '__quicknote__') window.D.quicknote = v.text || '';
+      if (k === 'notes-data')     window.D.notes = v.list || [];
+      if (k === 'quicknote-data') window.D.quicknote = v.text || '';
     });
 
     // Show app
@@ -1025,8 +1025,8 @@ function saveWeek(off) {
   mark('week|'+k, window.D.weeks[k]);
 }
 
-function saveNotes() { mark('__notes__', {list: window.D.notes}); }
-function saveQN()    { mark('__quicknote__', {text: window.D.quicknote}); }
+function saveNotes() { mark('notes-data', {list: window.D.notes}); }
+function saveQN()    { mark('quicknote-data', {text: window.D.quicknote}); }
 
 // ── DATE HELPERS ────────────────────────────────────────────
 let dayOff=0, weekOff=0;
@@ -1319,7 +1319,7 @@ function saveDayNoteAsNote() {
     });
   }
   // Save to Firestore via mark() debounce
-  mark('__notes__', {list: window.D.notes});
+  mark('notes-data', {list: window.D.notes});
   showToast('✓ Nota guardada en la sección de Notas.');
 }
 
@@ -2236,8 +2236,8 @@ async function restoreSession() {
     Object.entries(allDocs).forEach(([k, v]) => {
       if (k.startsWith('day|'))  window.D.days[k.replace('day|','')] = v;
       if (k.startsWith('week|')) window.D.weeks[k.replace('week|','')] = v;
-      if (k === '__notes__')     window.D.notes = v.list || [];
-      if (k === '__quicknote__') window.D.quicknote = v.text || '';
+      if (k === 'notes-data')     window.D.notes = v.list || [];
+      if (k === 'quicknote-data') window.D.quicknote = v.text || '';
     });
     document.getElementById('loadingScreen').style.display = 'none';
     document.getElementById('loginScreen').style.display   = 'none';
